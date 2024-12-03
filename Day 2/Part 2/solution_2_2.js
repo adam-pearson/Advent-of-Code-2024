@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs= require('fs');
 
 function readReportsFromFile() {
     return fs.readFileSync('../resources/input.txt', 'utf-8');
@@ -36,8 +36,8 @@ function checkReport(report, allowFurtherRecursion = true) {
                 return true;
             }
         }
-    };
-    
+    }
+
     return result;
 }
 
