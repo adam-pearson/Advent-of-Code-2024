@@ -13,11 +13,7 @@ function checkReport(report, allowFurtherRecursion = true) {
 
     const result = report.reduce((isSafe, curr, i) => {
         if (i === 0) return true;
-        if (isSafe === false) return false;
-
-        if (curr === report[i - 1]) {
-            return false;
-        };
+        if (isSafe === false || curr === report[i - 1]) return false;
 
         if (!direction) {
             direction = curr > report[i - 1] ? 1 : -1;
@@ -41,6 +37,7 @@ function checkReport(report, allowFurtherRecursion = true) {
             }
         }
     };
+    
     return result;
 }
 
