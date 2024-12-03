@@ -1,7 +1,6 @@
 const fs = require('fs');
 
 function readReportsFromFile() {
-    // Read the file and call the callback with the content
     return fs.readFileSync('../resources/input.txt', 'utf-8');
 }
 
