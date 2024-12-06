@@ -48,10 +48,15 @@ const topologicalSort = (update) => {
     return sortedPages.length === update.length ? sortedPages : [];
 };
 
-const validMiddlePageSum = updates.reduce((acc, curr) => {
-    if (!isValidUpdate(curr)) return acc;
-    const sortedUpdate = topologicalSort(curr);
-    return sortedUpdate.length ? acc + sortedUpdate[Math.floor(sortedUpdate.length / 2)] : acc
-}, 0);
+const validMiddlePageSum = updates.filter(update => !isValidUpdate(update))
+    .reduce((acc, curr) => {
+        const sortedUpdate = topologicalSort(curr);
+        return sortedUpdate.length ? acc + sortedUpdate[Math.floor(sortedUpdate.length / 2)] : acc;
+    }, 0);
 
+    const validMiddlePageSub = updates.reduce((acc, curr) => {
+        if (!isValidUpdate(curr)) return acc;
+        const sortedUpdate = topologicalSort(curr);
+        return sortedUpdate.length ? acc + sortedUpdate[Math.floor(sortedUpdate.length / 2)] : acc
+    }, 0)
 console.log(validMiddlePageSum);
