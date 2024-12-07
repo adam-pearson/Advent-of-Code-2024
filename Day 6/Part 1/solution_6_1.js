@@ -1,5 +1,5 @@
 const fs = require('fs');
-const input = fs.readFileSync('../resources/input.txt', 'utf-8');
+const input = fs.readFileSync('../resources/test.txt', 'utf-8');
 
 const inputRows = input.split("\n");
 const parsedInput = inputRows.map(row => row.split(""));
