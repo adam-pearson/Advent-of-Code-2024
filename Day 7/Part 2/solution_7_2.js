@@ -21,7 +21,7 @@ const backtrack = (goal, numbers, curr = 0, index = 0) => {
 
 const result = parsedInput.reduce((acc, curr) => {
     const goal = +curr[0];
-    const numbers = curr[1].split(" ").map(num => +num);
+    const numbers = curr[1].split(" ").map(Number);
 
     if (numbers.length === 1) {
         return acc + (numbers[0] === goal ? goal : 0);
