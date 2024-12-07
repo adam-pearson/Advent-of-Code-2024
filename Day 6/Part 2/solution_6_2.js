@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { start } = require('repl');
 const input = fs.readFileSync('../resources/input.txt', 'utf-8');
 
 const inputRows = input.split("\n");
