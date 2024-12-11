@@ -8,26 +8,26 @@ const chunk = (arr, size) =>
 
 const chunked = chunk(parsedInput, 2);
 
+const fileMap = chunked.map((block, i) => {
+  return {id: i, fileSpace: block[0], proceedingSpace: Number(block[1]) ? Number(block[1]) :  0}
+})
+
 const files = [];
 let fileSpaceCounter = 0;
 let proceedingSpaceCounter = 0;
 
-chunked.forEach((file, i) => {
-  const id = i;
-  const fileSpace = file[0];
-  const proceedingSpace = file[1];
-
-  if (fileSpaceCounter < fileSpace) {
-    for (let i = 0; i < fileSpace; i++) {
-      files.push(id);
+fileMap.forEach(file => {
+  if (fileSpaceCounter < file.fileSpace) {
+    for (let i = 0; i < file.fileSpace; i++) {
+      files.push(file.id);
       fileSpaceCounter++;
     }
     fileSpaceCounter = 0;
 
   }
   
-  if (proceedingSpaceCounter < proceedingSpace) {
-    for (let i = 0; i < proceedingSpace; i++) {
+  if (proceedingSpaceCounter < file.proceedingSpace) {
+    for (let i = 0; i < file.proceedingSpace; i++) {
       files.push(null);
       proceedingSpaceCounter++;
     }
@@ -40,6 +40,8 @@ chunked.forEach((file, i) => {
 for (let i = files.length - 1; i > 0; i--) {
   for (let j = 0; j < files.length; j++) {
     if (files[j] !== null) continue;
+
+    // j is null
     files[j] = files[i];
     files[i] = null;
   }
